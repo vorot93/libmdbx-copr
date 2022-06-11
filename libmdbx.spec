@@ -7,15 +7,14 @@
 %{!?target_minor_ver:   %global target_minor_ver    0}
 %{!?suppl_ver:          %global suppl_ver           0.1.2}
 Name:       libmdbx
-Vendor:     Erthink
 Version:    %{target_ver}.%{target_minor_ver}
 Release:    1%{?dist}
-Summary:    An amazingly fast key-value database library
+Summary:    One of the fastest embeddable key-value ACID database without WAL
 
 License:    OpenLDAP
 URL:        https://gitflic.ru/project/erthink/libmdbx
-Source0:    https://raw.githubusercontent.com/kaiwetlesen/%{name}-release/main/amalgamated-sources/%{name}-v%{target_ver}.tar.gz
-Patch0:     https://raw.githubusercontent.com/kaiwetlesen/%{name}-release/v%{suppl_ver}/CMakeLists.txt.patch
+Source0:    https://raw.githubusercontent.com/vorot93/%{name}-copr/main/amalgamated-sources/%{name}-v%{target_ver}.tar.gz
+Patch0:     https://raw.githubusercontent.com/vorot93/%{name}-copr/v%{suppl_ver}/CMakeLists.txt.patch
 
 BuildRequires:  cmake, gcc, gcc-c++, binutils
 
@@ -48,7 +47,7 @@ The %{name}-utils package contains utilities for maintaining %{name} data files.
 
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DMDBX_BUILD_TIMESTAMP:STRING=unknown .
+%cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DMDBX_BUILD_TIMESTAMP:STRING=unknown
 %cmake_build --config Release
 
 
