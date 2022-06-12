@@ -2,7 +2,7 @@
 
 set -e
 
-GIT_TAG='v0.11.6'
+GIT_TAG='v0.11.8'
 PKG_NAME='libmdbx'
 REPO_URL='https://gitflic.ru/project/erthink/libmdbx.git'
 
@@ -12,12 +12,8 @@ cd ${PKG_NAME}-src
 git checkout -b ${PKG_NAME}-${GIT_TAG} tags/${GIT_TAG}
 
 # Build specific stuff:
-make release-assets
-tarfile=$(ls ${PKG_NAME}*.tar.gz)
-zipfile=$(ls ${PKG_NAME}*.zip)
-
-mv "${tarfile}" "../amalgamated-sources/${PKG_NAME}-${GIT_TAG}.tar.gz"
-mv "${zipfile}" "../amalgamated-sources/${PKG_NAME}-${GIT_TAG}.zip"
+make dist
+mv "$(ls ${PKG_NAME}*.tar.gz)" "../amalgamated-sources/${PKG_NAME}-${GIT_TAG}.tar.gz"
 
 cd ..
 rm -rf ${PKG_NAME}-src
